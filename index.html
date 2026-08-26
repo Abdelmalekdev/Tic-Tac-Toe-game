@@ -12,9 +12,11 @@
 <body>
 
     <div class=" bg-slate-800 w-screen min-h-screen flex justify-center items-center">
-        <div class="flex flex-col">
+        <div class="flex flex-col gap-3">
+            <div id="turn-indicator" class="flex justify-center items-center">
+                <i class="fa-solid fa-x text-4xl"></i>
+            </div>
             <div id="game-container" class="grid grid-cols-3">
-
                 <div class="xo-area"></div>
                 <div class="xo-area"></div>
                 <div class="xo-area"></div>
@@ -26,19 +28,22 @@
                 <div class="xo-area"></div>
 
             </div>
-            <div id="statistics-container" class="grid grid-cols-3">
-                <div class="flex flex-col justify-center items-center">
-                    <h3 class=" text-4xl">PX</h3>
-                    <p id="player-x-score" class=" text-3xl">0</p>
+            <div class="flex flex-col justify-center items-center gap-3">
+                <div id="statistics-container" class="grid grid-cols-3 gap-20">
+                    <div class="flex flex-col justify-center items-center">
+                        <h3 class=" text-4xl">PX</h3>
+                        <p id="player-x-score" class=" text-3xl">0</p>
+                    </div>
+                    <div class="flex flex-col justify-center items-center">
+                        <h3 class=" text-4xl">Draw</h3>
+                        <p id="draw-score" class=" text-3xl">0</p>
+                    </div>
+                    <div class="flex flex-col justify-center items-center">
+                        <h3 class=" text-4xl">PO</h3>
+                        <p id="player-o-score" class=" text-3xl">0</p>
+                    </div>
                 </div>
-                <div class="flex flex-col justify-center items-center">
-                    <h3 class=" text-4xl">Draw</h3>
-                    <p id="draw-score" class=" text-3xl">0</p>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                    <h3 class=" text-4xl">PO</h3>
-                    <p id="player-o-score" class=" text-3xl">0</p>
-                </div>
+                    <button id="restart-btn" class="bg-blue-500 px-3 py-1 text-4xl rounded-xl">restar</button>
             </div>
         </div>
     </div>
