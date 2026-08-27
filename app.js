@@ -22,26 +22,28 @@ function handleClick(e) {
     
     if ( cell.innerHTML === ''){
         if (currentPlayer === 1) {
-            cell.innerHTML = '<i class="fa-solid fa-x text-8xl"></i>'; 
+
+            cell.innerHTML = '<img src="icons/X.svg" class="xo-animation">'; 
 
             if (checkWinner(1) === 0){
                 checkDraw();
                 currentPlayer = 2; 
-                turnIndicator.innerHTML = '<i class="fa-solid fa-o text-4xl"></i>';
-            } else{
-                resetGame(checkWinner(1));
+                turnIndicator.innerHTML = '<img src="icons/O.svg" class="w-[5%]">';
+            } 
+            if (checkWinner(1) === 1){
+                resetGame(1);
             }
             
         }
         else {
-            cell.innerHTML = '<i class="fa-solid fa-o text-8xl"></i>';
+            cell.innerHTML = '<img src="icons/O.svg" class="xo-animation">';
 
             if (checkWinner(2) === 0){
                 checkDraw();
                 currentPlayer = 1;
-                turnIndicator.innerHTML = '<i class="fa-solid fa-x text-4xl"></i>';
+                turnIndicator.innerHTML = '<img src="icons/X.svg" class="w-[5%]">';
             } else{
-                resetGame(checkWinner(2));
+                resetGame(2);
             }
             
         }
@@ -57,6 +59,7 @@ function restartGame(){
 
 function checkWinner(x) {
     let winner = 0;
+
     for (let j = 0; j <= 6; j+=3){
 
         for (let i = j; i <= j+1; i++){
@@ -152,13 +155,33 @@ function checkDraw(){
 function resetGame(result) {
 
     if(result === 1){
+        playerXScore.classList.remove('xo-animation');
+        void playerXScore.offsetWidth;
         playerXScore.innerHTML = parseInt(playerXScore.innerHTML) + 1;
+        playerXScore.classList.add('xo-animation');
     } else if (result === 2){
+        playerOScore.classList.remove('xo-animation');
+        void playerOScore.offsetWidth;
         playerOScore.innerHTML = parseInt(playerOScore.innerHTML) + 1;
+        playerOScore.classList.add('xo-animation');
     } else if (result === 0){
+        drawScore.classList.remove('xo-animation');
+        void drawScore.offsetWidth;
         drawScore.innerHTML = parseInt(drawScore.innerHTML) + 1;
+        drawScore.classList.add('xo-animation');
     }
 
     stopGame = true;
 
 }
+
+let credit = document.querySelector('#credit');
+let creditText = document.querySelector('#credit-text');
+
+credit.addEventListener('mouseenter', function(){
+    creditText.classList.remove('md:opacity-0');
+})
+
+credit.addEventListener('mouseleave', function(){
+    creditText.classList.add('md:opacity-0');
+})
