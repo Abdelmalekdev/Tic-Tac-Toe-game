@@ -15,7 +15,7 @@ restartBtn.addEventListener('click', restartGame);
 
 function handleClick(e) {
 
-    if (stopGame === true) {
+    if (stopGame) {
         return
     }
     const cell = e.currentTarget;
@@ -29,8 +29,7 @@ function handleClick(e) {
                 checkDraw();
                 currentPlayer = 2; 
                 turnIndicator.innerHTML = '<img src="icons/O.svg" class="w-[5%]">';
-            } 
-            if (checkWinner(1) === 1){
+            } else{
                 resetGame(1);
             }
             
@@ -57,14 +56,19 @@ function restartGame(){
     stopGame = false;
 }
 
+function getCellImg(index) {
+    let img = gameContainer.children[index].querySelector('img');
+    return img ? img.getAttribute('src') : ''; 
+}
+
 function checkWinner(x) {
     let winner = 0;
 
     for (let j = 0; j <= 6; j+=3){
 
         for (let i = j; i <= j+1; i++){
-            if (gameContainer.children[i].innerHTML !== '' && gameContainer.children[i+1].innerHTML !== ''){
-                if (gameContainer.children[i].innerHTML !== gameContainer.children[i+1].innerHTML){
+            if (getCellImg(i) !== '' && getCellImg(i+1) !== ''){
+                if (getCellImg(i) !== getCellImg(i+1)){
                     break
                 }
                 else if (i === j+1){
@@ -82,8 +86,8 @@ function checkWinner(x) {
     if (winner !== x){
         for (let j = 0; j <= 2; j++){
             for (let i = j; i <= j+3; i+=3){
-                if (gameContainer.children[i].innerHTML !== '' && gameContainer.children[i+3].innerHTML !== ''){
-                    if (gameContainer.children[i].innerHTML !== gameContainer.children[i+3].innerHTML){
+                if (getCellImg(i) !== '' && getCellImg(i+3) !== ''){
+                    if (getCellImg(i) !== getCellImg(i+3)){
                         break
                     }
                     else if (i === j+3){
@@ -103,8 +107,8 @@ function checkWinner(x) {
 
     if (winner !== x){
         for(let i = 0; i <= 4; i+=4){
-            if (gameContainer.children[i].innerHTML !== '' && gameContainer.children[i+4].innerHTML !== ''){
-                if (gameContainer.children[i].innerHTML !== gameContainer.children[i+4].innerHTML){
+            if (getCellImg(i) !== '' && getCellImg(i+4) !== ''){
+                if (getCellImg(i) !== getCellImg(i+4)){
                     break
                 } 
                 else if (i === 4){
@@ -118,8 +122,8 @@ function checkWinner(x) {
 
     if (winner !== x){
         for(let i = 2; i <= 4; i+=2){
-            if (gameContainer.children[i].innerHTML !== '' && gameContainer.children[i+2].innerHTML !== ''){
-                if (gameContainer.children[i].innerHTML != gameContainer.children[i+2].innerHTML){
+            if (getCellImg(i) !== '' && getCellImg(i+2) !== ''){
+                if (getCellImg(i) != getCellImg(i+2)){
                     break
                 }
                 else if (i === 4){
@@ -154,6 +158,8 @@ function checkDraw(){
 
 function resetGame(result) {
 
+    stopGame = true;
+
     if(result === 1){
         playerXScore.classList.remove('xo-animation');
         void playerXScore.offsetWidth;
@@ -170,8 +176,6 @@ function resetGame(result) {
         drawScore.innerHTML = parseInt(drawScore.innerHTML) + 1;
         drawScore.classList.add('xo-animation');
     }
-
-    stopGame = true;
 
 }
 
