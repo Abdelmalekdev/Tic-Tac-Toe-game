@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/*popin animation for X & O of the cells and the score number*/
 @keyframes popIn {
   0% {
     transform: scale(0); 
@@ -14,7 +15,7 @@
   }
 }
 
-
+/*page setup*/
 *{
     scroll-behavior: smooth;
     border-sizing: border-box;
@@ -30,6 +31,7 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
+/*cells style*/
 .xo-area{
     display: flex;
     justify-content: center;
@@ -40,6 +42,7 @@ body{
     
 }
 
+/*cells responsivity*/
 @media (max-width: 426px) {
     .xo-area{
         width: 100px;
